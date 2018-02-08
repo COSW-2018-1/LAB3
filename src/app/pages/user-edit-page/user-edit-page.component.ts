@@ -39,7 +39,7 @@ export class UserEditPageComponent implements OnInit {
 	  this.todoForm.get('password').value
     );
 
-    this.router.navigate(['/user']);
+    this.router.navigate(['/useredit']);
   }
 
 }

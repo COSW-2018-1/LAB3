@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../../services/users.service';
+import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -13,7 +13,7 @@ export class SignInPageComponent implements OnInit {
 	public loginError: string;
 
 	constructor(
-		public usersService: UsersService,
+		public userService: UserService,
 		public formBuilder: FormBuilder,
 		public router: Router		
 	){  }
@@ -26,7 +26,7 @@ export class SignInPageComponent implements OnInit {
 	}
 
 	doLogin() {
-		this.usersService.login(
+		this.userService.login(
 			this.signInForm.get('username').value,
 			this.signInForm.get('password').value).subscribe(loginResponse => {
 				this.router.navigate(['tasks']);

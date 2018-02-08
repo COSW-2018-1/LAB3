@@ -7,7 +7,7 @@ import { User } from "../models/user";
 import { Observable } from "rxjs/Observable";
 
 @Injectable()
-export class UsersService extends APIService {
+export class UserService extends APIService {
 	private resourceUrl = 'api/user';
 
 

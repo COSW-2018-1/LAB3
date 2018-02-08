@@ -11,15 +11,23 @@
 			<li *ngIf="!isLoggedIn()" class="nav-item">
 				<a class="nav-link" routerLinkActive="/" routerLink="/">Home</a>
 			</li>
-			<li class="nav-item">
+			<li *ngIf="isLoggedIn()" class="nav-item">
 				<a class="nav-link" routerLinkActive="/tasks" routerLink="/tasks">Tasks</a>
 			</li>
-			<li class="nav-item">
+			<li *ngIf="isLoggedIn()" class="nav-item">
 				<a class="nav-link" routerLinkActive="/edit" routerLink="/edit">Edit</a>
 			</li>
 			<li *ngIf="isLoggedIn()" class="nav-item">
-				<a href="#" class="nav-link" (click)="signOut()">(Sign Out)</a>
+				<a class="nav-link" routerLinkActive="/userlist" routerLink="/userlist">Users</a>
 			</li>
+			<li *ngIf="isLoggedIn()" class="nav-item">
+				<a class="nav-link" routerLinkActive="/useredit" routerLink="/useredit">Users Edit</a>
+			</li>
+
+
+			<li *ngIf="isLoggedIn()" class="nav-item">
+				<a href="#" class="nav-link" (click)="signOut()">(Sign Out)</a>
+			</li>			
 		</ul>
 
 		<!-- Search -->

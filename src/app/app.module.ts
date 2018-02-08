@@ -17,15 +17,22 @@ import { HttpModule } from '@angular/http';
 import { AuthService } from './common/auth.service';
 import { SignInPageComponent } from './pages/sign-in/sign-in-page.component';
 import { AppDataService } from './common/app-data.service';
-import { UsersService } from './services/user.service';
+import { UserService } from './services/user.service';
 import { ConnectionBackend } from '@angular/http/src/interfaces';
 import { TodoService }from './services/todo.service';
+import { UserEditPageComponent } from './pages/user-edit-page/user-edit-page.component';
+import { UserListPageComponent } from './pages/user-list-page/user-list-page.component';
 
 const ROUTES = [
-{path: '', component: HomePageComponent},
-{path: 'tasks', component: TaskListPageComponent},
-{path: 'edit', component: TaskEditPageComponent },
-{path: '**', component: PageNotFoundComponent}]
+
+	{path: '', component: SignInPageComponent },
+	{path: 'home', component: HomePageComponent },
+	{path: 'tasks', component: TaskListPageComponent},
+	{path: 'edit', component: TaskEditPageComponent },
+	{path: '**', component: PageNotFoundComponent},
+	{path: 'userlist', component: UserListPageComponent},
+	{path: 'useredit', component: UserEditPageComponent}
+]
 
 @NgModule({
   declarations: [
@@ -33,15 +40,18 @@ const ROUTES = [
     HomePageComponent,
     TaskListPageComponent,
     TaskEditPageComponent,
-    PageNotFoundComponent
+	PageNotFoundComponent,
+	UserListPageComponent,
+	UserEditPageComponent,
+	SignInPageComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(ROUTES),
 	ReactiveFormsModule,
-	HttpModule
-	//FormsModule
+	HttpModule,
+	FormsModule
   ],
   providers: [
 	{
@@ -54,7 +64,7 @@ const ROUTES = [
 	AppConfiguration,
 	AuthService,
 	AppDataService,
-	UsersService,
+	UserService,
 	HttpModule
 ],
   bootstrap: [AppComponent]
