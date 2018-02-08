@@ -1,22 +1,27 @@
-import { Injectable } from '@angular/core';
-import { User } from '../models/user';
-
-import { APIService } from '../common/api.service';
-import { Observable } from 'rxjs/Observable';
+import { AppConfiguration } from "../common/config/app-configuration.service";
+import { AuthService } from "../common/auth.service";
+import { Http } from "@angular/http";
+import { APIService } from "../common/api.service";
+import { Injectable } from "@angular/core";
+import { User } from "../models/user";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
-export class UserService extends APIService {
+export class UsersService extends APIService {
 	private resourceUrl = 'api/user';
-	private usuarios: User[] = [
-		new User('usuario 1', 'perez', ''),
-		new User('usuario 2', 'perez', ''),
-		new User('usuario 3', 'perez', '')
-	];
 
 
-	create(name: string, lastname: string, image: string): Observable<User> {
+	constructor(
+		public config: AppConfiguration,
+		public authService: AuthService,
+		public http: Http
+	) {
+		super(config, authService, http);
+	}
+
+	create(name: string, lastname: string, image: string, email: string, password: string): Observable<User> {
 		//this.todos.push(new Todo(description, priority, completed));
-		return this.post(this.resourceUrl, new User(name, lastname, image));
+		return this.post(this.resourceUrl, new User(name, lastname, image, email, password));
 	}
 
 	list(): Observable<User[]> {
@@ -26,14 +31,21 @@ export class UserService extends APIService {
 
 	login(username: string, password: string) {
 		return this.post('user/login', { username, password }, { credentials: false }).map(loginResponse => {
-		  if (loginResponse) {
-			this.authService.accessToken = loginResponse.accessToken;
-		  }
+			if (loginResponse) {
+				this.authService.accessToken = loginResponse.accessToken;
+			}
 		});
-	  }
+	}
+
+
+}
+
+
+
+
 
 	/*
-	constructor() {
+	constructor() //{
   
 	}*/
 
@@ -47,4 +59,3 @@ export class UserService extends APIService {
 	  this.usuarios.push(new User(name, lastname, image));
 	}
 	*/
-}

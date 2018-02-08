@@ -17,7 +17,9 @@ export class UserListPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.usuarios = this.userService.list();
+    this.userService.list().subscribe(todosResponse=>{
+      this.usuarios = todosResponse;
+    })
   }
 
 }

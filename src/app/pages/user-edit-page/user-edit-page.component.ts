@@ -24,7 +24,9 @@ export class UserEditPageComponent implements OnInit {
     this.todoForm = this.formBuilder.group({
       name: '',
       lastname: '',
-      image: ''
+	  image: '',
+	  email:'',
+	  password:''
     });
   }
 
@@ -32,7 +34,9 @@ export class UserEditPageComponent implements OnInit {
     this.userService.create(
       this.todoForm.get('name').value,
       this.todoForm.get('lastname').value,
-      this.todoForm.get('image').value
+	  this.todoForm.get('image').value,
+	  this.todoForm.get('email').value,
+	  this.todoForm.get('password').value
     );
 
     this.router.navigate(['/user']);
