@@ -20,7 +20,7 @@ export class UserService extends APIService {
 	}
 
 	create(name: string, lastname: string, image: string, email: string, password: string): Observable<User> {
-		//this.todos.push(new Todo(description, priority, completed));
+		
 		return this.post(this.resourceUrl, new User(name, lastname, image, email, password));
 	}
 
