@@ -13,7 +13,8 @@ export class TodoService extends APIService {
 		new Todo('todo 3')
 	];
 
-	create(description: string, priority: Number, completed: boolean): Observable<Todo>  {
+	create(description: string, priority: Number, completed: boolean): 
+	Observable<Todo>  {
 		//this.todos.push(new Todo(description, priority, completed));
 		return this.post(this.resourceUrl, new Todo(description, priority, completed));
 	} 
