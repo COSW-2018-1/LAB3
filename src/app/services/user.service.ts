@@ -52,10 +52,10 @@ export class UserService extends APIService {
 		return this.post('user/busqueda', email );
 	}
 
-	login(username: string, password: string) {	
-		console.log(username);
+	login(name: string, password: string) {	
+		console.log(name);
 		console.log(password);
-		return this.post('user/login', { username, password }, { credentials: false }).map(loginResponse => {
+		return this.post('user/login', { name, password }, { credentials: false }).map(loginResponse => {
 			if (loginResponse) {
 				this.authService.accessToken = loginResponse.accessToken;
 			}
