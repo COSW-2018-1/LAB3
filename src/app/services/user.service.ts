@@ -9,18 +9,8 @@ import { Observable } from "rxjs/Observable";
 
 
 
-/*
-@Injectable()
-export class UserService extends APIService {
-	private resourceUrl = 'api/user';
-	constructor(
-		public config: AppConfiguration,
-		public authService: AuthService,
-		public http: Http
-	){
-		super(config, authService, http);
-	}*/
 
+/*
 @Injectable()
 export class UserService extends APIService {
 	private resourceUrl = 'api/user';
@@ -30,7 +20,25 @@ export class UserService extends APIService {
 		new User('user 3', 'apellido 3', '', 'cor@co3.com', '123')
 	];
 
-
+	constructor(
+		public config: AppConfiguration,
+		public authService: AuthService,
+		public http: Http
+	){
+		super(config, authService, http);
+	}
+*/
+@Injectable()
+export class UserService extends APIService {
+	private resourceUrl = 'user/user';
+	
+	constructor(
+		public config: AppConfiguration,
+		public authService: AuthService,
+		public http: Http
+	){
+		super(config, authService, http);
+	}
 
 	create(name: string, lastname: string, image: string, email: string, password: string): Observable<User> {
 		return this.post(this.resourceUrl, new User(name, lastname, image, email, password));
@@ -40,8 +48,13 @@ export class UserService extends APIService {
 		return this.get(this.resourceUrl);
 	}
 
-	
-	login(username: string, password: string) {
+	busqueda(email: string): Observable<User> {
+		return this.post('user/busqueda', email );
+	}
+
+	login(username: string, password: string) {	
+		console.log(username);
+		console.log(password);
 		return this.post('user/login', { username, password }, { credentials: false }).map(loginResponse => {
 			if (loginResponse) {
 				this.authService.accessToken = loginResponse.accessToken;
@@ -49,25 +62,26 @@ export class UserService extends APIService {
 		});
 	}
 
-
 }
 
 
 
 
+/*
+@Injectable()
+export class UserService extends APIService {
+	private resourceUrl = 'api/user';
+	private users: User[] = [
+		new User('user 1', 'apellido 1', '', 'cor@co1.com', '123'),
+		new User('user 2', 'apellido 2', '', 'cor@co2.com', '123'),
+		new User('user 3', 'apellido 3', '', 'cor@co3.com', '123')
+	];
 
-	/*
-	constructor() //{
-  
-	}*/
-
-
-	/*
-	list(): User[] {
-	  return this.usuarios;
+	constructor(
+		public config: AppConfiguration,
+		public authService: AuthService,
+		public http: Http
+	){
+		super(config, authService, http);
 	}
-  
-	create(name: string, lastname: string, image: string) {
-	  this.usuarios.push(new User(name, lastname, image));
-	}
-	*/
+*/
