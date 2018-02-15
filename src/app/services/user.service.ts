@@ -30,7 +30,7 @@ export class UserService extends APIService {
 */
 @Injectable()
 export class UserService extends APIService {
-	private resourceUrl = 'user/user';
+	private resourceUrl = 'user/';
 	
 	constructor(
 		public config: AppConfiguration,
@@ -45,17 +45,17 @@ export class UserService extends APIService {
 	}
 
 	list(): Observable<User[]> {
-		return this.get(this.resourceUrl);
+		return this.get(this.resourceUrl+'traerUsers');
 	}
 
 	busqueda(email: string): Observable<User> {
-		return this.post('user/busqueda', email );
+		return this.post(this.resourceUrl+'busqueda', email );
 	}
 
 	login(name: string, password: string) {	
 		console.log(name);
 		console.log(password);
-		return this.post('user/login', { name, password }, { credentials: false }).map(loginResponse => {
+		return this.post(this.resourceUrl+'login', { name, password }, { credentials: false }).map(loginResponse => {
 			if (loginResponse) {
 				this.authService.accessToken = loginResponse.accessToken;
 			}
