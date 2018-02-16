@@ -52,10 +52,8 @@ export class UserService extends APIService {
 		return this.post(this.resourceUrl+'busqueda', email );
 	}
 
-	login(name: string, password: string) {	
-		console.log(name);
-		console.log(password);
-		return this.post(this.resourceUrl+'login', { name, password }, { credentials: false }).map(loginResponse => {
+	login(email: string, password: string) {
+		return this.post(this.resourceUrl+'login', { email, password }, { credentials: false }).map(loginResponse => {
 			if (loginResponse) {
 				this.authService.accessToken = loginResponse.accessToken;
 			}
