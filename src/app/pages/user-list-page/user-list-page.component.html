@@ -12,10 +12,12 @@
  <tr *ngFor="let user of users">
    <td>{{user.name}}</td>
    <td>{{user.lastname}}</td>
-   <td>IMAGEN EN BLANCO</td>
+   <td>
+	   <img [src]="user.image" width='150' height='150' >
+   </td>
    <td>{{user.email}}</td>
  </tr>
 </table>
 
 
-<!--img src="" width="150" height="150" -->
+<!--img src="" width='150' height='150' -->
