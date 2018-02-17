@@ -30,20 +30,20 @@ export class UserEditPageComponent implements OnInit {
 		});
 	}
 
-	onSubmit() {
+	onSubmit() {		
 		this.userService.create(
 			this.userForm.get('name').value,
 			this.userForm.get('lastname').value,
 			this.userForm.get('image').value,
 			this.userForm.get('email').value,
-			this.userForm.get('password').value
+			this.userForm.get('password').value			
 		).subscribe(serverResponse => {
-			this.router.navigate(['/useredit']);
+			this.router.navigate(['/userlist']);
 		}, error => {
 			console.log(error);
 		});
 
-		this.router.navigate(['/useredit']);
+		//this.router.navigate(['/useredit']);
 	}
 
 

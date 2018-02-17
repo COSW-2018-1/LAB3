@@ -31,29 +31,31 @@ export class UserService extends APIService {
 @Injectable()
 export class UserService extends APIService {
 	private resourceUrl = 'user/';
-	
+
 	constructor(
 		public config: AppConfiguration,
 		public authService: AuthService,
 		public http: Http
-	){
+	) {
 		super(config, authService, http);
 	}
 
 	create(name: string, lastname: string, image: string, email: string, password: string): Observable<User> {
-		return this.post(this.resourceUrl, new User(name, lastname, image, email, password));
+		return this.post(this.resourceUrl + 'addUser',
+			new User(100, name, lastname, image, email, password)
+		);
 	}
 
 	list(): Observable<User[]> {
-		return this.get(this.resourceUrl+'traerUsers');
+		return this.get(this.resourceUrl + 'listUsers');
 	}
 
-	busqueda(email: string): Observable<User> {
-		return this.post(this.resourceUrl+'busqueda', email );
+	busquedaPorEmail(email: string): Observable<User> {
+		return this.post(this.resourceUrl + 'searchEmailUser', email);
 	}
 
 	login(email: string, password: string) {
-		return this.post(this.resourceUrl+'login', { email, password }, { credentials: false }).map(loginResponse => {
+		return this.post(this.resourceUrl + 'login', { email, password }, { credentials: false }).map(loginResponse => {
 			if (loginResponse) {
 				this.authService.accessToken = loginResponse.accessToken;
 			}
