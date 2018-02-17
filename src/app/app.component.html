@@ -1,3 +1,9 @@
+<!-- Progress Bar -->
+<div class="progress">
+		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="75"
+		 aria-valuemin="0" aria-valuemax="100"></div>
+	</div>
+
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
 
 	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
@@ -11,17 +17,19 @@
 			<li *ngIf="!isLoggedIn()" class="nav-item">
 				<a class="nav-link" routerLinkActive="/" routerLink="/">Home</a>
 			</li>
+
 			<li *ngIf="isLoggedIn()" class="nav-item">
 				<a class="nav-link" routerLinkActive="/tasks" routerLink="/tasks">Tasks</a>
 			</li>
 			<li *ngIf="isLoggedIn()" class="nav-item">
-				<a class="nav-link" routerLinkActive="/edit" routerLink="/edit">Edit</a>
+				<a class="nav-link" routerLinkActive="/edit" routerLink="/edit">Add Task</a>
 			</li>
+			
 			<li *ngIf="isLoggedIn()" class="nav-item">
 				<a class="nav-link" routerLinkActive="/userlist" routerLink="/userlist">Users</a>
 			</li>
 			<li *ngIf="isLoggedIn()" class="nav-item">
-				<a class="nav-link" routerLinkActive="/useredit" routerLink="/useredit">Users Edit</a>
+				<a class="nav-link" routerLinkActive="/useredit" routerLink="/useredit">Add User</a>
 			</li>
 
 
