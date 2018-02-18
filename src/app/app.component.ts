@@ -1,18 +1,27 @@
 import { Component } from '@angular/core';
 import { AuthService } from './common/auth.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { UserService } from './services/user.service';
+import { User } from './models/user';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent {	
 	title = 'app';
+
+	public searchForm: FormGroup;	
+	public notFound: string;
+	private ruser: User;
 
 	constructor(
 		public authService: AuthService,
-		public router: Router
+		public router: Router,
+		public userService: UserService,
+		public formBuilder: FormBuilder		
 	) {
 		if (!this.authService.isLoggedIn()) {
 			this.router.navigate(['/']);
@@ -25,6 +34,22 @@ export class AppComponent {
 
 	signOut() {
 		this.authService.signOut();
+	}
+
+	ngOnInit() {
+		this.searchForm = this.formBuilder.group({
+			emailSerach: ''			
+		});
+	}
+	
+	doSearch() {
+		this.userService.busquedaPorEmail(
+			this.searchForm.get('emailSerach').value
+		).subscribe(userResponse => {
+				this.ruser = userResponse;
+			}, error => {
+				this.notFound = 'Error Busqueda: ' + (error && error.message ? error.message : '');
+			})
 	}
 
 }

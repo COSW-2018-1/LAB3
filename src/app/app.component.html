@@ -39,10 +39,18 @@
 		</ul>
 
 		<!-- Componentx Search -->
-		<form class="form-inline">
-			<input class="form-control mr-sm-2" type="text" placeholder="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#modal-search">Search</button>
+		<form [formGroup]="searchForm" (ngSubmit)="doSearch()" novalidate>
+			<div class="form-group">
+				
+					<input type="text" class="form-control mr-sm-2" id="correo"  placeholder="Busque por email" formControlName="emailSerach"
+					required >
+
+					<button type="submit" class="btn btn-success btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#modal-search">Buscar</button>
+				
+			</div>
 		</form>
+
+
 	</div>
 </nav>
 
@@ -63,8 +71,30 @@
 			</div>
 
 			<div class="modal-body">
-				This feature is not implemented yet. Sorry for the inconvenience.
+				This feature is not implemented yet. Sorry for the inconvenience
+
+				<table class="table table-bordered">
+						<thead>
+						  <tr>
+							<th>Name</th>
+							<th>Lastname</th>
+							<th>Image</th>
+							<th>Email</th>
+						  </tr>
+						</thead>
+						<tr>
+						  <td>{{ruser.name}}</td>
+						  <td>{{ruser.lastname}}</td>
+						  <td>
+							  <img [src]="ruser.image" width='150' height='150' >
+						  </td>
+						  <td>{{ruser.email}}</td>
+						</tr>
+					   </table>
+					   
+				<p class="text-danger mt-1" *ngIf="notFound">{{notFound}}</p>
 			</div>
+
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				<!-- button type="button" class="btn btn-primary">OK!</button -->

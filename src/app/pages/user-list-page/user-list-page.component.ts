@@ -14,8 +14,6 @@ export class UserListPageComponent implements OnInit {
 
 
 	constructor(public userService: UserService) {
-
-
 	}
 
 	ngOnInit() {
