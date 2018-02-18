@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './common/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -10,7 +10,8 @@ import { User } from './models/user';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css']
 })
-export class AppComponent {	
+
+export class AppComponent implements OnInit{	
 	title = 'app';
 
 	public searchForm: FormGroup;	
@@ -38,18 +39,28 @@ export class AppComponent {
 
 	ngOnInit() {
 		this.searchForm = this.formBuilder.group({
-			emailSerach: ''			
+			email: ''			
 		});
 	}
 	
+
 	doSearch() {
 		this.userService.busquedaPorEmail(
-			this.searchForm.get('emailSerach').value
+			this.searchForm.get('email').value).subscribe(userResponse => {
+				this.ruser = userResponse;
+			}, error => {
+				this.notFound = 'Error Busqueda: ' + (error && error.message ? error.message : '');
+			})
+
+	/*
+	doSearch() {
+		this.userService.busquedaPorEmail(
+			this.searchForm.get('email').value
 		).subscribe(userResponse => {
 				this.ruser = userResponse;
 			}, error => {
 				this.notFound = 'Error Busqueda: ' + (error && error.message ? error.message : '');
 			})
-	}
+	}*/
 
 }

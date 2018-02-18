@@ -42,10 +42,10 @@
 		<form [formGroup]="searchForm" (ngSubmit)="doSearch()" novalidate>
 			<div class="form-group">
 				
-					<input type="text" class="form-control mr-sm-2" id="correo"  placeholder="Busque por email" formControlName="emailSerach"
+					<input type="text" class="form-control mr-sm-2" id="email"  placeholder="Busque por email" formControlName="email"
 					required >
 
-					<button type="submit" class="btn btn-success btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#modal-search">Buscar</button>
+					<button type="submit" class="btn btn-success btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#modal-search" >Buscar</button>
 				
 			</div>
 		</form>
@@ -61,7 +61,7 @@
 			<div class="card-header">
 				<div class="modal-header">
 
-					<h5 class="modal-title" id="exampleModalLabel">Resultados de la busqueda:</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Resultado de la busqueda</h5>
 
 
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -71,9 +71,8 @@
 			</div>
 
 			<div class="modal-body">
-				This feature is not implemented yet. Sorry for the inconvenience
 
-				<table class="table table-bordered">
+				<!--table class="table table-bordered">
 						<thead>
 						  <tr>
 							<th>Name</th>
@@ -90,8 +89,8 @@
 						  </td>
 						  <td>{{ruser.email}}</td>
 						</tr>
-					   </table>
-					   
+					   </table -->
+
 				<p class="text-danger mt-1" *ngIf="notFound">{{notFound}}</p>
 			</div>
 

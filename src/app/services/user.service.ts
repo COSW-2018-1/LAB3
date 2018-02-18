@@ -51,7 +51,7 @@ export class UserService extends APIService {
 	}
 
 	busquedaPorEmail(email: string): Observable<User> {
-		return this.post(this.resourceUrl + 'searchEmailUser', email);
+		return this.post(this.resourceUrl + 'searchEmailUser', {email})
 	}
 
 	login(email: string, password: string) {

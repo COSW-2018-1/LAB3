@@ -43,7 +43,7 @@ export class UserEditPageComponent implements OnInit {
 			console.log(error);
 		});
 
-		//this.router.navigate(['/useredit']);
+		this.router.navigate(['/useredit']);
 	}
 
 

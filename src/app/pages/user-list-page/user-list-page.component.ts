@@ -13,7 +13,10 @@ export class UserListPageComponent implements OnInit {
 	private users: User[] = [];
 
 
-	constructor(public userService: UserService) {
+	constructor(
+		public userService: UserService
+	) {
+		
 	}
 
 	ngOnInit() {
