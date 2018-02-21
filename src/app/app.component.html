@@ -41,12 +41,11 @@
 		<!-- Componentx Search -->
 		<form [formGroup]="searchForm" (ngSubmit)="doSearch()" novalidate>
 			<div class="form-group">
-				
-					<input type="text" class="form-control mr-sm-2" id="email"  placeholder="Busque por email" formControlName="email"
-					required >
 
-					<button type="submit" class="btn btn-success btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#modal-search" >Buscar</button>
-				
+				<input type="text" class="form-control mr-sm-2" id="email" placeholder="Busque por email" formControlName="email" required>
+
+				<button type="submit" class="btn btn-success btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#modal-search">Buscar</button>
+
 			</div>
 		</form>
 
@@ -63,35 +62,39 @@
 
 					<h5 class="modal-title" id="exampleModalLabel">Resultado de la busqueda</h5>
 
-
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<!-- QUITAR PARA SOLO TENER EL BOTON DE CLOSE PARA CERRAR -->
+					<!--button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
-					</button>
+					</button-->
 				</div>
 			</div>
 
-			<div class="modal-body">
+			<div id="formulario_modal"> <!-- PARA LIMPIAR EL CAMPO ANTES DE IMPRIMIR-->
+				<div *ngIf="!isSearch()">
+					<div class="modal-body">
 
-				<!--table class="table table-bordered">
-						<thead>
-						  <tr>
-							<th>Name</th>
-							<th>Lastname</th>
-							<th>Image</th>
-							<th>Email</th>
-						  </tr>
-						</thead>
-						<tr>
-						  <td>{{ruser.name}}</td>
-						  <td>{{ruser.lastname}}</td>
-						  <td>
-							  <img [src]="ruser.image" width='150' height='150' >
-						  </td>
-						  <td>{{ruser.email}}</td>
-						</tr>
-					   </table -->
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Lastname</th>
+									<th>Image</th>
+									<th>Email</th>
+								</tr>
+							</thead>
+							<tr>
+								<td>{{ruser.name}}</td>
+								<td>{{ruser.lastname}}</td>
+								<td>
+									<img [src]="ruser.image" width='150' height='150'>
+								</td>
+								<td>{{ruser.email}}</td>
+							</tr>
+						</table>
 
-				<p class="text-danger mt-1" *ngIf="notFound">{{notFound}}</p>
+						<p class="text-danger mt-1" *ngIf="notFound">{{notFound}}</p>
+					</div>
+				</div>
 			</div>
 
 			<div class="modal-footer">
