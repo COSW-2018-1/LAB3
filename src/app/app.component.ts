@@ -11,10 +11,10 @@ import { User } from './models/user';
 	styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit{	
+export class AppComponent implements OnInit {
 	title = 'app';
 
-	public searchForm: FormGroup;	
+	public searchForm: FormGroup;
 	public notFound: string;
 	private ruser: User;
 
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit{
 		public authService: AuthService,
 		public router: Router,
 		public userService: UserService,
-		public formBuilder: FormBuilder		
+		public formBuilder: FormBuilder
 	) {
 		if (!this.authService.isLoggedIn()) {
 			this.router.navigate(['/']);
@@ -39,28 +39,21 @@ export class AppComponent implements OnInit{
 
 	ngOnInit() {
 		this.searchForm = this.formBuilder.group({
-			email: ''			
+			email: ''
 		});
 	}
-	
+
 
 	doSearch() {
 		this.userService.busquedaPorEmail(
 			this.searchForm.get('email').value).subscribe(userResponse => {
 				this.ruser = userResponse;
-			}, error => {
+			}, error => {				
 				this.notFound = 'Error Busqueda: ' + (error && error.message ? error.message : '');
 			})
+	}
 
-	/*
-	doSearch() {
-		this.userService.busquedaPorEmail(
-			this.searchForm.get('email').value
-		).subscribe(userResponse => {
-				this.ruser = userResponse;
-			}, error => {
-				this.notFound = 'Error Busqueda: ' + (error && error.message ? error.message : '');
-			})
-	}*/
-
+	isSearch(){
+		return this.ruser = null;
+	}
 }
