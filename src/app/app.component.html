@@ -39,9 +39,9 @@
 		</ul>
 
 		<!-- Componentx Search -->
-		<form [formGroup]="searchForm" (ngSubmit)="doSearch()" novalidate>
+		<form [formGroup]="searchForm" (ngSubmit)="doSearch()" class="form-inline my-2 my-lg-0" novalidate>
 			<div class="form-group">
-
+				
 				<input type="text" class="form-control mr-sm-2" id="email" placeholder="Busque por email" formControlName="email" required>
 
 				<button type="submit" class="btn btn-success btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#modal-search">Buscar</button>
@@ -69,35 +69,39 @@
 				</div>
 			</div>
 
-			<div id="formulario_modal"> <!-- PARA LIMPIAR EL CAMPO ANTES DE IMPRIMIR-->
-				<div *ngIf="!isSearch()">
-					<div class="modal-body">
 
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Lastname</th>
-									<th>Image</th>
-									<th>Email</th>
-								</tr>
-							</thead>
-							<tr>
-								<td>{{ruser.name}}</td>
-								<td>{{ruser.lastname}}</td>
-								<td>
-									<img [src]="ruser.image" width='150' height='150'>
-								</td>
-								<td>{{ruser.email}}</td>
-							</tr>
-						</table>
 
-						<p class="text-danger mt-1" *ngIf="notFound">{{notFound}}</p>
-					</div>
+			<div class="modal-body">
+
+				<table *ngIf="!isSearch()" class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Lastname</th>
+							<th>Image</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tr>
+						<td>{{ruser.name}}</td>
+						<td>{{ruser.lastname}}</td>
+						<td>
+							<img [src]="ruser.image" width='150' height='150'>
+						</td>
+						<td>{{ruser.email}}</td>
+					</tr>
+				</table>
+
+				<div >
+					<p class="text-danger mt-1" *ngIf="notFound">{{notFound}}</p>
 				</div>
+
 			</div>
+
+
+
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearSearch()">Close</button>
 				<!-- button type="button" class="btn btn-primary">OK!</button -->
 			</div>
 		</div>

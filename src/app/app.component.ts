@@ -47,7 +47,13 @@ export class AppComponent implements OnInit {
 		return this.ruser==null;
 	}
 
+	clearSearch(){
+		this.ruser = new User(0, "Not", "Found", "http://i0.kym-cdn.com/profiles/icons/big/000/071/040/404%20is%20not%20found.jpg", "@", "");
+		this.notFound= "-_-";
+	}
+
 	doSearch() {
+		//this.notFound=""; //poner en blanco para que no imprima error anterior si encuentra al usuario
 		this.userService.busquedaPorEmail(
 			this.searchForm.get('email').value
 		).subscribe(userResponse => {
