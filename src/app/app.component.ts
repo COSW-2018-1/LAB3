@@ -43,29 +43,19 @@ export class AppComponent implements OnInit {
 		});
 	}
 
-	isSearch(){
+	isSearch() {
 		return this.ruser==null;
 	}
 
-
 	doSearch() {
 		this.userService.busquedaPorEmail(
-			this.searchForm.get('email').value).subscribe(userResponse => {
-				this.ruser = userResponse;
-			}, error => {
-				this.notFound = 'Error Busqueda: ' + (error && error.message ? error.message : '');
-			})
-
-		/*
-		doSearch() {
-			this.userService.busquedaPorEmail(
-				this.searchForm.get('email').value
-			).subscribe(userResponse => {
-					this.ruser = userResponse;
-				}, error => {
-					this.notFound = 'Error Busqueda: ' + (error && error.message ? error.message : '');
-				})
-		}*/
-
+			this.searchForm.get('email').value
+		).subscribe(userResponse => {
+			this.ruser = userResponse;
+		}, error => {
+			this.notFound = 'Error Busqueda: ' + (error && error.message ? error.message : '');
+		})
 	}
+
 }
+
